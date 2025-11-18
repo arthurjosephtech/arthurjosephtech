@@ -47,8 +47,7 @@ The onboarding lifecycle runs through three stages:
 +-------------------+ +----------------------+ +-----------------------+
 20–25 min Instant <10 min
 
-yaml
-Copy code
+
 
 ---
 
@@ -108,8 +107,6 @@ If device = Windows Autopilot:
 Allow password-only login
 Enforce MFA after enrollment
 
-yaml
-Copy code
 
 ### **Benefits**
 

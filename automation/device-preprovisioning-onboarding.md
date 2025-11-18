@@ -40,7 +40,7 @@ This is now the enterprise-standard workflow.
 
 The onboarding lifecycle runs through three stages:
 
-![Device Onboarding Architecture Flowchart](../images/preprovisioning-pipeline.png)
+![Device Onboarding Architecture Flowchart](../images/preprovisioning-pipeline-1.png)
 
 
 ---

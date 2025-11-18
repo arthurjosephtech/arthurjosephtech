@@ -50,8 +50,6 @@ The pre-provisioning stage creates a ready-to-go workstation, fully secured, ful
 
 ✅ Core Enterprise Applications Installed (Win32)
 
-Win32 apps are packaged and silently deployed, including:
-
 Microsoft 365 Apps
 
 Adobe Unifier
@@ -101,8 +99,6 @@ New users couldn’t log in without setting up MFA first, but they also couldn�
 
 🔧 Solution: Okta Conditional Access Policy
 
-I implemented a logic rule:
-
 If device = Windows Autopilot
 → Allow authentication with password only
 → Defer MFA enrollment until the device is fully enrolled
@@ -144,9 +140,13 @@ With optimized ordering, application dependencies, and ESP settings, the entire 
 
 Old workflow:
 45–90 minutes, highly manual
+
 New workflow:
+
 20–25 min pre-provisioning
+
 <10 min Autopilot
+
 ≈ 30 minutes total
 
 🔐 Stronger Security Posture

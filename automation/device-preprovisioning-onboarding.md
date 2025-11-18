@@ -40,13 +40,7 @@ This is now the enterprise-standard workflow.
 
 The onboarding lifecycle runs through three stages:
 
-+-------------------+ +----------------------+ +-----------------------+
-| Phase 1 | | Phase 2 | | Phase 3 |
-| Pre-Provisioning | -----> | Okta Login | -----> | Windows Autopilot |
-| (IT Prep Stage) | | Optimization | | Enrollment |
-+-------------------+ +----------------------+ +-----------------------+
-20–25 min Instant <10 min
-
+![Device Onboarding Architecture Flowchart](../images/preprovisioning-pipeline.png)
 
 
 ---

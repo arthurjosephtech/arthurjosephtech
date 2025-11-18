@@ -1,64 +1,64 @@
-🚀 Modern Device Onboarding & Pre-Provisioning Pipeline
+Modern Device Onboarding & Pre-Provisioning Pipeline
 End-to-End Automation of Windows Provisioning Using Intune, Okta, Autopilot, and Zero-Touch Deployment
 
-This project documents how I engineered a modern, automated, and scalable onboarding pipeline for Windows devices at an enterprise law firm.
-The redesign replaces a slow, manual, inconsistent process with a zero-touch, identity-driven provisioning workflow built using:
+This project documents the engineering of a modern, automated, and scalable onboarding pipeline for Windows devices at an enterprise law firm. The redesign replaces a slow and inconsistent process with a zero-touch, identity-driven provisioning workflow using:
 
 Microsoft Intune (Win32 Pre-Provisioning + Autopilot ESP)
 
-Okta (password-only first login → enforced MFA after enrollment)
+Okta (password-only first login; MFA enforced after enrollment)
 
 Azure AD / Entra ID
 
-Security baselines, app bundles, and automation policies
+Standardized security baselines and configuration automation
 
-The result is a standardized, secure, sub-30-minute provisioning flow that drastically improves IT efficiency and the new-hire experience.
+The result is a standardized, secure, sub-30-minute provisioning flow that significantly improves IT efficiency and the new-hire experience.
 
-🧩 Executive Summary
+Executive Summary
 
 Before this project, device onboarding:
 
-Took 45–90 minutes
+Required 45–90 minutes
 
-Required hands-on IT involvement
+Involved manual setup
 
-Frequently failed due to:
+Frequently ran into MFA loops and inconsistent deployments
 
-MFA setup blockers
+A new three-phase automated provisioning architecture was developed to:
 
-Slow application deployments
+Eliminate manual setup
 
-Inconsistent policy application
+Enforce consistent security configuration
 
-I designed and implemented a three-phase automated provisioning architecture that:
+Automate all app and policy deployment
 
-✔️ Eliminates manual setup
-✔️ Enforces consistent security configuration
-✔️ Automates all application & policy deployment
-✔️ Removes first-login MFA blockers
-✔️ Cuts IT effort by ~70%
-✔️ Gets users to a working desktop in under 30 minutes
+Remove first-login MFA blockers
 
-This system is now the standard for all workstation deployments.
+Reduce IT effort by ~70%
 
-🏗️ Architecture Overview
-Three-Phase Pipeline
+Deliver a fully configured desktop in under 30 minutes
+
+This workflow is now the standard for all workstation deployments.
+
+Architecture Overview
+
+The onboarding pipeline consists of three stages:
+
 +-------------------+        +----------------------+        +-----------------------+
 | Phase 1           |        | Phase 2              |        | Phase 3               |
 | Pre-Provisioning  | -----> | Okta Login           | -----> | Windows Autopilot     |
 | (IT Prep Stage)   |        | Optimization         |        | Enrollment            |
 +-------------------+        +----------------------+        +-----------------------+
-       20–25 min                    Instant                        <10 min
+     20–25 min                     Instant                        <10 min
 
 
-Each phase handles a specific part of the lifecycle, ensuring a fully configured workstation before first login.
+Each stage ensures the device is fully prepared prior to the user’s first interaction.
 
-🔵 Phase 1 — Pre-Provisioning (20–25 Minutes)
-Zero-touch IT prep before the user ever sees the device
+Phase 1: Pre-Provisioning (20–25 Minutes)
+Overview
 
-This phase produces a ready-to-use, secure, and fully configured workstation, including:
+This stage produces a ready-to-use, secure workstation before the end user signs in.
 
-✅ Core Applications Installed (Win32)
+Applications Installed
 
 Microsoft 365 Apps
 
@@ -68,7 +68,7 @@ Cortex XDR
 
 Uniflow Smart Client
 
-GoToAssist (unattended remote support)
+GoToAssist (unattended access)
 
 Cisco Jabber
 
@@ -78,128 +78,119 @@ Google Chrome
 
 Okta Verify
 
-Previously, these took 30–40 minutes to install manually.
-Now they’re done automatically.
+These applications previously required 30–40 minutes of manual installation.
 
-✅ Security & Configuration Policies Applied
+Policies Applied
 
-Nine core policies are deployed, including:
+Nine core security and configuration policies are deployed:
 
-Microsoft LAPS (local admin password rotation)
+Microsoft LAPS
 
 Windows EDR Baseline
 
-Firewall – Allowed Apps
+Firewall allowed-apps configuration
 
-Corporate Background + Lockscreen
+Corporate desktop and lockscreen branding
 
 Chrome Security Baseline
 
-Taskbar Layout Standardization
+Taskbar layout standardization
 
 25H2 Security Baseline
 
-➡️ Security posture is enforced before the user ever logs in.
+Security posture is established before the first user login.
 
-🟣 Phase 2 — Okta Login Optimization
-Password-only authentication for the first login
+Phase 2: Okta Login Optimization
+Problem Identified
 
-Previously, users were stuck in a loop:
+New hires were unable to authenticate because:
 
-They couldn’t log in without MFA →
-They couldn’t enroll MFA without logging in.
+MFA must be set up during the first login
 
-This created daily onboarding tickets.
+But MFA cannot be set up until after login
 
-🔧 Solution: Okta Conditional Access Logic
-IF device = Windows Autopilot
-THEN allow password-only login
-THEN require MFA after enrollment
+This created a circular dependency and frequent onboarding tickets.
+
+Solution Implemented
+
+A Conditional Access rule was implemented:
+
+If device = Windows Autopilot:
+    Allow password-only authentication
+    Enforce MFA after MDM enrollment
 
 Benefits
 
-✔️ Fast first login
-✔️ No phone needed during setup
-✔️ Eliminates MFA blocker tickets
-✔️ MFA still enforced after MDM enrollment
+First login succeeds without a mobile device
 
-🟢 Phase 3 — Windows Autopilot (<10 Minutes)
-Final user personalization + cloud enrollment
+IT receives fewer onboarding tickets
 
-Autopilot applies:
+MFA compliance remains intact after enrollment
 
-📦 Additional Applications
+Phase 3: Windows Autopilot (<10 Minutes)
+Overview
 
-Microsoft Teams
+Autopilot completes the device's final configuration, including:
+
+Applications Installed
 
 Company Portal
 
-🔐 Additional Policies
+Microsoft Teams
 
-Wi-Fi auto-configure profile
+Additional Policies
 
-Chrome Baseline Reinforcement
+Corporate Wi-Fi auto-connect profile
 
-Skip first-login animations
+Chrome Security Baseline reinforcement
 
-Streamlined ESP tracking
+Skipped first-login animations
 
-Optimized deployment ensures this phase consistently completes in under 10 minutes.
+Streamlined ESP configuration
 
-🧠 Results & Impact
-🚀 Provisioning Time Reduced by 60–75%
-Old workflow
+This phase consistently completes in under 10 minutes due to optimized ordering and dependency management.
 
-⏳ 45–90 minutes
-🛠 Manual setup
-🐛 Frequent failures
+Results and Impact
+Provisioning Time Reduction
 
-New workflow
+Old Workflow
 
-⏱ 20–25 min pre-provisioning
-⏱ <10 min Autopilot
-➡️ ≈ 30 minutes total
+45–90 minutes
 
-🔐 Stronger Security Posture
+Manual, inconsistent, error-prone
 
-Policies applied before user login
+New Workflow
 
-LAPS enforced on all devices
+20–25 minutes (Pre-Provisioning)
+
+Under 10 minutes (Autopilot)
+
+~30 minutes total
+
+Security Enhancements
+
+Security baselines applied before the first login
+
+LAPS on all devices
 
 EDR active from first boot
 
-Standardized configuration across all hardware
+Fully standardized build process
 
-💼 Zero-Touch IT Operations
+Operational Improvements
 
-IT never logs into new machines
+IT no longer logs into new devices
 
-No MFA enrollment issues
+No MFA-related onboarding issues
 
-No inconsistent application deployments
+Consistent and reliable app deployments
 
-Hands-free baseline enforcement
+User Experience Improvements
 
-😀 Better User Experience
+Devices are functional immediately upon login
 
-Laptop “just works” on first boot
+No waiting for applications or security policies
 
-No delays waiting for apps to install
+Reduced need for helpdesk support
 
-Zero first-day helpdesk calls
-
-Clean, branded, secure desktop
-
-✔️ This Markdown Is GitHub-Optimized
-
-Uses proper # headings
-
-Lists render properly
-
-ASCII diagram renders correctly
-
-Emoji spacing fixed
-
-All sections visually structured
-
-Works perfectly in light/dark mode
+Clean, professional, and secure initial desktop experience

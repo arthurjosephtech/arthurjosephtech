@@ -34,7 +34,7 @@ I'm passionate about cybersecurity and love tackling complex challenges through 
 - **[Programmatic Vulnerability Remediations (PowerShell and BASH)](https://github.com/arthurjoseph17/programmatic-vulnerability-remediations)**
 
 
-## 🖥️ Enterprise Device Provisioning & Automation
+## 🖥️ Enterprise Device Provisioning & Automation Projects
 
 - **[Modern Zero-Touch Device Onboarding Pipeline](automation/device-preprovisioning-onboarding.md)**
 
